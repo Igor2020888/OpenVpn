@@ -1,8 +1,8 @@
 ---
-- name:   Ansible_openvpn_roles
+- name:   deploy_openvpn
   hosts:  all
   become: yes
 
   roles:
-    - { role: Ansible_openvpn_roles, when: ansible_system == 'Linux' }  
+    - { role: deploy_openvpn, when: ansible_system == 'Linux' }  
  
