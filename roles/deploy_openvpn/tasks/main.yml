@@ -1,0 +1,37 @@
+---
+# tasks file for deploy_openvpn
+  - name: Install OpenVPN
+    apt:  name=openvpn state=latest
+
+  - name: Install Easy-Rsa
+    apt:  name=easy-rsa state=latest
+
+  - name: Copy
+    copy: src={{ item }} dest={{ key_dir_output }}
+    loop:
+      - "ca.crt"
+      - "ta.key"
+      - "user1.crt"
+      - "user1.key"
+      - "user1_for_generate.conf"
+      - "user1_for_generate2.conf"
+      - "user1.conf"
+      - "user1_main.conf"
+      - "skript2.sh"
+
+  - name: Create file 1
+    shell: echo -n "{{ pam1 }}\n{{ pam2 }}\n{{ pam3 }}\n{{ pam4 }}\n{{ pam5 }}\n{{ pam6 }}\n{{ pam7 }}\n\n\n{{ pam8 }}\n{{ pam9 }}\n\n\n" >> user1_for_generate.conf
+
+  - name: Create file 2
+    shell: echo -n "\n\n\n{{ pam8 }}\n{{ pam10 }}\n{{ pam11 }}\n{{ pam12 }}\n{{ pam13 }}\n{{ pam14 }}\n{{ pam15 }}\n{{ pam16 }}" >> user1_for_generate2.conf
+
+  - name: Chmod
+    shell: chmod 777 skript2.sh
+
+  - name: Start script
+    shell: ./skript2.sh
+
+  - name: Start openvpn config
+    shell: openvpn --config user1_main.conf
+
+
