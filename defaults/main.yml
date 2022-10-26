@@ -1,0 +1,20 @@
+---
+# defaults file for deploy_openvpn
+pam1                          : client
+pam2                          : dev tun
+pam3                          : proto udp
+pam4                          : remote 94.73.244.109 1194
+pam5                          : resolv-retry infinite
+pam6                          : nobind
+pam7                          : persist-key
+pam8                          : key-direction 1
+pam9                          : remote-cert-tls server
+pam10                         : persist-tun
+pam11                         : cipher AES-256-CBC
+pam12                         : comp-lzo  
+pam13                         : log user1.log
+pam14                         : verb 3
+pam15                         : sndbuf 0
+pam16                         : rcvbuf 0
+#key_dir                       : /etc/openvpn/client
+key_dir_output                : /home/igor
